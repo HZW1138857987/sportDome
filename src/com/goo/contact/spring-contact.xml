@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	<bean id="contact.ContactAction" scope="prototype" 
+		class="com.goo.contact.action.ContactAction">
+			<property name="contactServiceImp">
+			<ref bean="contact.ContactService" />
+		</property>
+	</bean>
+		<bean id="contact.ContactService" class="com.goo.contact.service.impl.ContactServiceImp" >
+		<property name="contactDaoImp">
+			<ref bean="contact.ContactDao" />
+		</property>
+	</bean>
+		<bean id="contact.ContactDao" class="com.goo.contact.dao.impl.ContactDaoImp">
+		<property name="sqlMapClient">
+			<ref bean="sqlMapClient" />
+		</property>	
+	</bean>
+</beans>

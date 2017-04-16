@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	<bean id="product.ProductAction" scope="prototype" 
+		class="com.goo.product.action.ProductAction">
+			<property name="productSelectServiceImpl">
+			<ref bean="product.productSelectService" />
+		</property>
+	</bean>
+		<bean id="product.productSelectService" class="com.goo.product.service.impl.ProductSelectServiceImpl" >
+		<property name="productGetDaoImpl">
+			<ref bean="product.productGetDao" />
+		</property>
+	</bean>
+		<bean id="product.productGetDao" class="com.goo.product.dao.impl.ProductGetDaoImpl">
+		<property name="sqlMapClient">
+			<ref bean="sqlMapClient" />
+		</property>	
+	</bean>
+</beans>

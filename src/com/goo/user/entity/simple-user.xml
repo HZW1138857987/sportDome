@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+ <sqlMap  namespace="sql.user">
+ 	<!--分页最外层封装-->
+<!--  	<sql id="findOne">
+ 		select * from t_uam_user
+ 	</sql> -->
+ 	<typeAlias alias="simple-user" type="com.goo.user.entity.User" />
+    <resultMap id="userMap" class="com.goo.user.entity.User">
+        <result property="id" column="user_id"/>
+        <result property="loginPassword" column="password"/>
+        <result property="createDate" column="user_email"/>
+        <result property="name" column="user_name"/>
+        <result property="createDate" column="createTime"/>
+        <result property="isMember" column="is_member"/>
+        <result property="balance" column="balance"/>
+        <result property="phone" column="phone"/>
+        <result property="loginName" column="login_name"/>
+    </resultMap>
+ 	<select id="findUserByLoginNameAndPassword" parameterClass="string" resultClass="simple-user">
+<!--  		<include refid="findOne"/>
+ --> 		SELECT user_id as userId,user_name as userName,password as password, createTime as createTime from t_uam_user where user_name=#userName# and password = #password#
+ 	</select>
+ 	 
+ </sqlMap>

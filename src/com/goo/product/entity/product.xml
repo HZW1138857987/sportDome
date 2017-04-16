@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+ <sqlMap  namespace="sql.product">
+	<sql id="findproduct">
+		select * from t_pro_product
+	</sql>
+ 	<typeAlias alias="product" type="com.goo.product.entity.Product" />
+    <resultMap id="productMap" class="com.goo.product.entity.Product">
+        <result property="productId" column="id"/>
+        <result property="productName" column="name"/>
+        <result property="productPrice" column="price"/>
+        <result property="productPath" column="path"/>
+        <result property="productType" column="type" />
+        <result property="createDate" column="createDate" />
+        
+    </resultMap>
+
+ 	 <select id="selectProducts" parameterClass="list" resultClass="product">
+ 	 <include refid="findproduct"/>
+ 	</select>
+ 	 <select id="selectNewProducts" parameterClass="list" resultClass="product">
+ SELECT id as productId,name as productName,price as productPrice, path as productPath, type as productType ,createDate FROM t_pro_product  ORDER BY createDate DESC
+ 	</select>
+	<select id="productById" resultClass="product">
+	 		<include refid="findproduct"/>
+	 		  where id = #productId# 
+	</select>  
+ </sqlMap>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+ <sqlMap  namespace="sql.user">
+ 	<!--分页最外层封装-->
+	<sql id="pageStart">
+		<![CDATA[
+             select * from (select rownum num,temp_t.* from(
+        ]]>
+	</sql>
+	<!-- 分页最外层封装 -->
+	<sql id="pageEnd">
+		<![CDATA[
+              ) temp_t  where  rownum<=((#pageNo#-1)*#pageSize#+#pageSize#)) where num>(#pageNo#-1)*#pageSize#
+        ]]>
+	</sql>
+		<!-- mysql分页最外层封装 -->
+	<sql id="mysqlPageEnd">
+		<![CDATA[
+             limit #pageStart#,#pageSize#
+        ]]>
+	</sql>
+	
+ 	<typeAlias alias="user" type="com.goo.abc.entity.User" />
+    <resultMap id="userMap" class="com.goo.abc.entity.User">
+        <result property="userId" column="user_id"/>
+        <result property="password" column="password"/>
+        <result property="userName" column="user_name"/>
+        <result property="createTime" column="createTime"/>
+        
+    </resultMap>
+ 	<select id="selectOneUser" parameterClass="user" resultClass="Integer">
+ 		select count(*) from t_uam_user where user_name=#userName# and password = #password#
+ 	</select>
+ 	 <select id="selectUsers" parameterClass="map" resultClass="user">
+ 	 
+ 		SELECT user_id as userId,user_name as userName,password as password, createTime as createTime FROM t_uam_user order by createTime DESC
+ 		<include refid="mysqlPageEnd"/>
+ 	</select>
+ 	<select id="selectUsersTotal" parameterClass="map" resultClass="Integer">
+ 		SELECT count(*) FROM t_uam_user 
+ 		
+ 	</select>
+ </sqlMap>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+
+  <package name="abc" namespace="/abc" extends="struts-default" >
+  	<action name="laucher" class="abc.AbcAction"
+			method="laucher">
+			<result name="success" type="redirect">searchUsers.action</result>
+			
+			<result name="error">/WEB-INF/login/login.jsp</result>
+	</action>
+	<action name="locLaucher" class="abc.AbcAction"
+			method="locLaucher">
+			<result name="success">/WEB-INF/login/login.jsp</result>
+	</action>
+ 	<action name="searchUsers" class="abc.AbcAction"
+			method="searchUsers">
+			<result name="success">/WEB-INF/login/UserList.jsp</result>
+	</action>
+  </package>
+  
+</struts>
+

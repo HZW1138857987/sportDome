@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+ "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="sql.contact">
+	<!--分页最外层封装 -->
+	<sql id="findOne">
+		select * from t_uam_contact
+	</sql>
+	<sql id="pageStart">
+		<![CDATA[
+             select * from (select rownum num,temp_t.* from(
+        ]]>
+	</sql>
+	<!-- 分页最外层封装 -->
+	<sql id="pageEnd">
+		<![CDATA[
+              ) temp_t  where  rownum<=((#pageNo#-1)*#pageSize#+#pageSize#)) where num>(#pageNo#-1)*#pageSize#
+        ]]>
+	</sql>
+	<!-- mysql分页最外层封装 -->
+	<sql id="mysqlPageEnd">
+		<![CDATA[
+             limit #pageStart#,#pageSize#
+        ]]>
+	</sql>
+
+	<typeAlias alias="contact" type="com.goo.contact.entity.Contact" />
+	<resultMap id="contact" class="com.goo.contact.entity.Contact">
+		<result property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="productId" column="product_id" />
+		<result property="productNum" column="product_num" />
+		<result property="productPrice" column="price" />
+	</resultMap>
+	<select id="findContactsByUserId" resultClass="list">
+		<include refid="findOne" />
+		where user_id = #userId#
+	</select>
+
+</sqlMap>
