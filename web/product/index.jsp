@@ -181,16 +181,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <c:forEach items="${newList}" var="userItem"
 							varStatus="userIndex">
 				   <div class="col_1_of_3 span_1_of_3 simpleCart_shelfItem"> 
-				  	   <a href="${pageContext.request.contextPath}/product/showone.action?id=${userItem.productId}">
+				  	   <a href="${pageContext.request.contextPath}/product/showone.action?id=${userItem.id}">
 						   <div class="inner_content clearfix">
 							<div class="product_image">
-								<img src="${pageContext.request.contextPath}/${userItem.productPath}" class="img-responsive" alt=""/>
+								<img src="${pageContext.request.contextPath}/${userItem.path}" class="img-responsive" alt=""/>
 								<a href="" class="button item_add item_1"> </a>	
 								 <div class="product_container">
 								   <div class="cart-left">
-									 <p class="title">${userItem.productName }</p>
+									 <p class="title">${userItem.name }</p>
 								   </div>
-								   <span class="amount item_price">${userItem.productPrice}</span>
+								   <span class="amount item_price">${userItem.price}</span>
 								   <div class="clearfix"></div>
 							     </div>		
 							  </div>
