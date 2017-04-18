@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<include file="com/goo/abc/struts-abc.xml" /> 
+	<include file="com/goo/data/struts-data.xml" /> 
+	<include file="com/goo/product/struts-product.xml"/>
+	<include file="com/goo/user/struts-user.xml"/>
+	<include file="com/goo/contact/struts-contact.xml"/>
+</struts>
+	

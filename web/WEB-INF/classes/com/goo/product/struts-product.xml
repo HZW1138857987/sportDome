@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+
+  <package name="product" namespace="/product" extends="struts-default" >
+	<action name="searchProducts" class="product.ProductAction"
+			method="searchProducts">
+	<result name="success">/product/index.jsp</result>
+	</action>
+	<action name="showone" class="product.ProductAction" method="showone" >
+	<result name="success">/product/single.jsp</result>
+	</action>
+<!-- 	<action name="checkout" class="product.ProductAction" method="checkout">
+	<result name="success">/WEB-INF/product/checkout.jsp</result>	
+	</action> -->
+  </package>
+	
+</struts>
+
