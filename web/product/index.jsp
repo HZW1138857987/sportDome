@@ -184,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  	   <a href="${pageContext.request.contextPath}/product/showone.action?id=${userItem.id}">
 						   <div class="inner_content clearfix">
 							<div class="product_image">
-								<img src="${pageContext.request.contextPath}/${userItem.path}" class="img-responsive" alt=""/>
+								<img src="${pageContext.request.contextPath}/images/${userItem.path}" class="img-responsive" alt=""/>
 								<a href="" class="button item_add item_1"> </a>	
 								 <div class="product_container">
 								   <div class="cart-left">

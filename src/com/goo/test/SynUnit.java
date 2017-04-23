@@ -1,21 +1,22 @@
 package com.goo.test;
 
-public class SynUnit{
-	int i =0;
-	public synchronized  void sysT(int a){
-		i+=a;
+public class SynUnit {
+    int i = 0;
 
-		try {
-			if(a==1){
+    public synchronized void sysT(int a) {
+        i += a;
 
-				Thread.currentThread().sleep(3000);
-			}
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(i);
-	}
-	
-	
+        try {
+            if (a == 1) {
+
+                Thread.currentThread().sleep(3000);
+            }
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println(i);
+    }
+
+
 }

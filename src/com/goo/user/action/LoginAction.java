@@ -1,70 +1,68 @@
 package com.goo.user.action;
 
-import javax.servlet.http.HttpSession;
-
 import com.goo.abc.entity.User;
 import com.goo.comtools.action.BaseAction;
 import com.goo.user.service.UserService;
 
-public class LoginAction extends BaseAction{
-	private HttpSession session;
-		
-	protected User user;
-	private LoginUserDto loginUserDto;
-	public HttpSession getSession() {
-		return session;
-	}
+import javax.servlet.http.HttpSession;
 
-	public void setSession(HttpSession session) {
-		this.session = session;
-	}
+public class LoginAction extends BaseAction {
+    private HttpSession session;
 
-	public User getUser() {
-		return user;
-	}
+    protected User user;
+    private LoginUserDto loginUserDto;
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public HttpSession getSession() {
+        return session;
+    }
 
-	public LoginUserDto getLoginUserDto() {
-		return loginUserDto;
-	}
+    public void setSession(HttpSession session) {
+        this.session = session;
+    }
 
-	public void setLoginUserDto(LoginUserDto loginUserDto) {
-		this.loginUserDto = loginUserDto;
-	}
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
 
+    public LoginUserDto getLoginUserDto() {
+        return loginUserDto;
+    }
 
-	private UserService userServiceImp;
-
+    public void setLoginUserDto(LoginUserDto loginUserDto) {
+        this.loginUserDto = loginUserDto;
+    }
 
 
-	public UserService getUserServiceImp() {
-		return userServiceImp;
-	}
+    private UserService userServiceImp;
 
-	public void setUserServiceImp(UserService userServiceImp) {
-		this.userServiceImp = userServiceImp;
-	}
 
-	public String ass()
-	{
-		return "success";
-	}
-	
-	public String login(){
-		try {
-			//list = productSelectServiceImpl.searchProducts();
-			if (userServiceImp.login(loginUserDto)) {
-				session.setAttribute("curreyUser", loginUserDto);
-				return "success";
-			}
-			return "error";
-		} catch (Exception e) {
-			return "error";
-		}
-	}
-	
+    public UserService getUserServiceImp() {
+        return userServiceImp;
+    }
+
+    public void setUserServiceImp(UserService userServiceImp) {
+        this.userServiceImp = userServiceImp;
+    }
+
+    public String ass() {
+        return "success";
+    }
+
+    public String login() {
+        try {
+            //list = productSelectServiceImpl.searchProducts();
+            if (userServiceImp.login(loginUserDto)) {
+                session.setAttribute("curreyUser", loginUserDto);
+                return "success";
+            }
+            return "error";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
 }

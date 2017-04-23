@@ -4,8 +4,8 @@
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="sql.product">
     <sql id="findproduct">
-		select * from t_pro_product
-	</sql>
+        select * from t_pro_product
+    </sql>
     <typeAlias alias="product" type="com.goo.product.entity.Product"/>
     <resultMap id="productMap" class="com.goo.product.entity.Product">
         <result property="id" column="id"/>
@@ -23,8 +23,8 @@
 
     <select id="selectNewProducts" parameterClass="list" resultClass="product">
         <include refid="findproduct"/>
-          ORDER BY createDate DESC
- 	</select>
+        ORDER BY createDate DESC
+    </select>
     <select id="productById" resultClass="product">
         <include refid="findproduct"/>
         where id = #id#

@@ -1,11 +1,11 @@
 package com.goo.contact.dao;
 
-import java.util.List;
-
 import com.goo.contact.entity.Contact;
+
+import java.util.List;
 
 public interface ContactDao {
 
-	List<Contact> findContactsByUserId(Integer id);
+    List<Contact> findContactsByUserId(Integer id);
 
 }
