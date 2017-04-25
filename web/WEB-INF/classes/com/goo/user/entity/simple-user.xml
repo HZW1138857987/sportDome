@@ -4,9 +4,12 @@
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="sql.user">
     <!--分页最外层封装-->
-    <!--  	<sql id="findOne">
-             select * from t_uam_user
-         </sql> -->
+    <sql id="findOne">
+        SELECT user_id as id,user_name as name,password as loginPassword,
+        createDate as createDate ,is_member as isMember ,balance as balance,
+        phone as phone, login_name as loginName   from
+        t_uam_user
+    </sql>
     <typeAlias alias="simple-user" type="com.goo.user.entity.User"/>
     <resultMap id="userMap" class="com.goo.user.entity.User">
         <result property="id" column="user_id"/>
@@ -19,10 +22,12 @@
         <result property="phone" column="phone"/>
         <result property="loginName" column="login_name"/>
     </resultMap>
-    <select id="findUserByLoginNameAndPassword" parameterClass="string" resultClass="simple-user">
-        <!--  		<include refid="findOne"/>
-         -->        SELECT user_id as userId,user_name as userName,password as password, createTime as createTime from
-        t_uam_user where user_name=#userName# and password = #password#
+    <select id="findUserByLoginNameAndPassword" parameterClass="map" resultClass="simple-user">
+        <include refid="findOne"/>
+        where user_name=#name# and password = #password#
     </select>
-
+    <select id="findUserById" parameterClass="integer" resultClass="simple-user">
+        <include refid="findOne"/>
+        where user_id=#id#
+    </select>
 </sqlMap>
