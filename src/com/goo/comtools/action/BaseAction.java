@@ -5,12 +5,18 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.List;
 
 public class BaseAction extends ActionSupport {
     private static final Logger LOG = Logger.getLogger(BaseAction.class);
     private static final long serialVersionUID = 1L;
+    private HttpSession session = ServletActionContext.getRequest().getSession();
+
+    public HttpSession getSession() {
+        return session;
+    }
 
     public final String SUCCESS = "success";
 

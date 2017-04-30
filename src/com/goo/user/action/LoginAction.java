@@ -1,24 +1,13 @@
 package com.goo.user.action;
 
-import com.goo.abc.entity.User;
 import com.goo.comtools.action.BaseAction;
+import com.goo.user.entity.User;
 import com.goo.user.service.UserService;
 
-import javax.servlet.http.HttpSession;
-
 public class LoginAction extends BaseAction {
-    private HttpSession session;
 
     protected User user;
     private LoginUserDto loginUserDto;
-
-    public HttpSession getSession() {
-        return session;
-    }
-
-    public void setSession(HttpSession session) {
-        this.session = session;
-    }
 
     public User getUser() {
         return user;
@@ -54,12 +43,13 @@ public class LoginAction extends BaseAction {
 
     public String login() {
         try {
-            //list = productSelectServiceImpl.searchProducts();
-            if (userServiceImp.login(loginUserDto)) {
-                session.setAttribute("curreyUser", loginUserDto);
+            user = userServiceImp.login(loginUserDto);
+            if (user != null) {
+                getSession().setAttribute("curreyUser", user);
                 return "success";
+            } else {
+                return "error";
             }
-            return "error";
         } catch (Exception e) {
             return "error";
         }

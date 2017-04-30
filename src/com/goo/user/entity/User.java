@@ -3,9 +3,15 @@ package com.goo.user.entity;
 import java.util.Date;
 
 public class User {
+    public static final String findById = "sql.user.findUserById";
+
+    public static String getFindById() {
+        return findById;
+    }
+
     private Integer id;
     private String name;
-    private Integer isMember;
+    private String isMember;
     private String loginName;
     private String loginPassword;
     private Double balance;
@@ -13,12 +19,8 @@ public class User {
     private String email;
     private Date createDate;
 
-    public Integer getIsMember() {
+    public String getIsMember() {
         return isMember;
-    }
-
-    public void setIsMember(Integer isMember) {
-        this.isMember = isMember;
     }
 
     public Date getCreateDate() {
@@ -61,12 +63,8 @@ public class User {
         this.name = name;
     }
 
-    public boolean isMember() {
-        return isMember == 1;
-    }
-
-    public void setMember(boolean isMember) {
-        this.isMember = isMember ? 1 : 0;
+    public void setIsMember(String isMember) {
+        this.isMember = isMember;
     }
 
     public String getLoginName() {

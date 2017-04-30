@@ -1,13 +1,16 @@
 package com.goo.contact.entity;
 
-import java.math.BigDecimal;
-
 public class Contact {
+    public static final String findById  = "sql.contact.findById";
+
+    public static String getFindById() {
+        return findById;
+    }
+
     private int id;
     private int userId;
     private int productId;
     private int productNum;
-    private BigDecimal productPrice;
 
     public int getId() {
         return id;
@@ -41,11 +44,4 @@ public class Contact {
         this.productNum = productNum;
     }
 
-    public BigDecimal getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
-    }
 }

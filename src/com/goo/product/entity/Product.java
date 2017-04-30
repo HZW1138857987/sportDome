@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Product {
+    public static final String findById = "sql.product.productById";
+
+    public static String getFindById() {
+        return findById;
+    }
     private int id;
     private String name;
     private BigDecimal price;

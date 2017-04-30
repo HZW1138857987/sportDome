@@ -3,7 +3,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="sql.product">
-    <sql id="findproduct">
+    <sql id="findAll">
         select * from t_pro_product
     </sql>
     <typeAlias alias="product" type="com.goo.product.entity.Product"/>
@@ -18,15 +18,15 @@
     </resultMap>
 
     <select id="selectProducts" parameterClass="list" resultClass="product">
-        <include refid="findproduct"/>
+        <include refid="findAll"/>
     </select>
 
     <select id="selectNewProducts" parameterClass="list" resultClass="product">
-        <include refid="findproduct"/>
+        <include refid="findAll"/>
         ORDER BY createDate DESC
     </select>
     <select id="productById" resultClass="product">
-        <include refid="findproduct"/>
+        <include refid="findAll"/>
         where id = #id#
     </select>
 </sqlMap>

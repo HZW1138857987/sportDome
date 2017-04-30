@@ -8,7 +8,10 @@
     <package name="user" namespace="/user" extends="struts-default">
         <action name="login" class="user.LoginAction"
                 method="login">
-            <result name="success">/WEB-INF/product/searchProducts.action</result>
+            <result name="success" type="redirectAction">
+                <param name="namespace">/product</param>
+                <param name="actionName">searchProducts</param>
+            </result>
             <result name="error">/product/login.jsp</result>
         </action>
     </package>

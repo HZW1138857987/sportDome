@@ -5,7 +5,8 @@ import com.ibatis.sqlmap.client.event.RowHandler;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.util.Assert;
 
-import java.io.Serializable;
+import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -21,18 +22,37 @@ import java.util.Map;
  * -------------------------------------------------------- Aug 25, 2010 杨奇 1.0
  * 1.0 Version
  */
-public abstract class BaseDAO<T extends Serializable> extends
+public abstract class BaseDAO extends
         SqlMapClientDaoSupport {
 
     private static final long serialVersionUID = 1L;
 
     public void init() {
-        // this.getSqlMapClientTemplate().queryForList(statementName,
-        // skipResults, maxResults)
-        // this.getSqlMapClientTemplate().queryForList(statementName,
-        // parameterObject, skipResults, maxResults);
     }
 
+    public Object findById(Class clazz, Integer id) {
+        Method get;
+        Object o;
+        try {
+            get = clazz.getMethod("getFindById");
+            o = get.invoke(null);
+        } catch (Exception e) {
+            return null;
+        }
+        return this.getSqlMapClientTemplate().queryForObject(String.valueOf(o), id);
+    }
+
+    public Collection<Object> findAll(Class clazz) {
+        Method getAll;
+        Object o;
+        try {
+            getAll = clazz.getMethod("getFindAll");
+            o = getAll.invoke(null);
+        } catch (Exception e) {
+            return null;
+        }
+        return this.getSqlMapClientTemplate().queryForList(String.valueOf(o));
+    }
 
     /**
      * 根据条件分页查询数据
@@ -58,11 +78,11 @@ public abstract class BaseDAO<T extends Serializable> extends
      * @param recoderNum    每页几条
      * @return 满足的分页条件集合
      */
-    public List searchPage(String statementName, T param, int pageNum,
-                           int recoderNum) throws Exception {
-        return this.getSqlMapClientTemplate().queryForList(statementName,
-                param, pageNum * recoderNum, recoderNum);
-    }
+//    public List searchPage(String statementName, T param, int pageNum,
+//                           int recoderNum) throws Exception {
+//        return this.getSqlMapClientTemplate().queryForList(statementName,
+//                param, pageNum * recoderNum, recoderNum);
+//    }
 
 
     /**

@@ -4,7 +4,7 @@
         "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="sql.user">
     <!--分页最外层封装-->
-    <sql id="findOne">
+    <sql id="findAll">
         SELECT user_id as id,user_name as name,password as loginPassword,
         createDate as createDate ,is_member as isMember ,balance as balance,
         phone as phone, login_name as loginName   from
@@ -23,11 +23,11 @@
         <result property="loginName" column="login_name"/>
     </resultMap>
     <select id="findUserByLoginNameAndPassword" parameterClass="map" resultClass="simple-user">
-        <include refid="findOne"/>
+        <include refid="findAll"/>
         where user_name=#name# and password = #password#
     </select>
     <select id="findUserById" parameterClass="integer" resultClass="simple-user">
-        <include refid="findOne"/>
+        <include refid="findAll"/>
         where user_id=#id#
     </select>
 </sqlMap>

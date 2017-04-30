@@ -31,11 +31,13 @@
         <result property="userId" column="user_id"/>
         <result property="productId" column="product_id"/>
         <result property="productNum" column="product_num"/>
-        <result property="productPrice" column="price"/>
     </resultMap>
     <select id="findContactsByUserId" resultClass="list">
         <include refid="findOne"/>
         where user_id = #userId#
     </select>
-
+    <select id="findById" resultClass="contact">
+        <include refid="findOne"/>
+        where id = #id#
+    </select>
 </sqlMap>

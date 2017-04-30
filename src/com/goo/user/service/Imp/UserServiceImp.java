@@ -5,8 +5,6 @@ import com.goo.user.dao.UserManager;
 import com.goo.user.entity.User;
 import com.goo.user.service.UserService;
 
-import java.util.Objects;
-
 public class UserServiceImp implements UserService {
     private UserManager userManagerImp;
 
@@ -19,13 +17,10 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean login(LoginUserDto userDto) {
+    public User login(LoginUserDto userDto) {
         // TODO Auto-generated method stub
         User user = userManagerImp.login(userDto);
-        if (Objects.isNull(user)) {
-            return false;
-        }
-        return true;
+        return user;
     }
 
 }
