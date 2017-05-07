@@ -12,7 +12,6 @@
               lazyLoadingEnabled="true" errorTracingEnabled="true" maxRequests="32"
               maxSessions="10" maxTransactions="5" useStatementNamespaces="true"/>
 
-    <sqlMap resource="com/goo/abc/entity/user.xml"/>
     <sqlMap resource="com/goo/data/entity/data.xml"/>
     <sqlMap resource="com/goo/product/entity/product.xml"/>
     <sqlMap resource="com/goo/contact/entity/contact.xml"/>
